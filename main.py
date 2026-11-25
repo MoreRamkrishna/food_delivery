@@ -1,6 +1,7 @@
 # main.py
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
+from controllers.dashabord_controller import create_dashboard_router
 
 class MealCreate(BaseModel):
     name: str
@@ -12,6 +13,8 @@ meals = [
     {"id": 1, "name": "Veggie rice bowl", "price": 8.50},
     {"id": 2, "name": "rice only", "price": 9.00},
 ]
+
+app.include_router(create_dashboard_router(meals))
 
 @app.get("/meals")
 def list_meals():
